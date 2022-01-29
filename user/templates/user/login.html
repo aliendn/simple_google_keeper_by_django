@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<form method="post" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ login_form.user_name.id_for_label }}">{{ login_form.user_name.label }}</label>
+        {{ login_form.user_name }}
+        {% for error in login_form.user_name.errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="{{ login_form.password.id_for_label }}">{{ login_form.password.label }}</label>
+        {{ login_form.password }}
+        {% for error in login_form.password.errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+<a href="{% url 'users:register' %}"><button type="submit" class="btn btn-warning">not login? register here</button></a>
+
+{% endblock content %}

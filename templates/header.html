@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" href="/">tamrin</a>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li><a href="/"><i class="fa fa-lock"></i>خانه</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'users:logout' %}">خروج</a></li>
+        <li><a href="{% url 'users:note_creating' %}">نوت ساز</a></li>
+        <li><a href="{% url 'users:profile' %}">نوت های من</a></li>
+        {% comment %} <li><a href="{% url 'users:edit_notes noteId=selected_note_id' %}">ادیت</a></li> {% endcomment %}
+      {% else %}
+        <li><a href="{% url 'users:login' %}">ورود</a></li>
+        <li><a href="{% url 'users:register' %}">ثبت نام</a></li>
+      {% endif %}
+      </ul>
+    </div>
+
+</nav>
+
+{% endblock header %}

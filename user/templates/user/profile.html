@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="card">
+    {% for note in notes %}
+    <div class="card-header">
+        <a href="{% url 'users:edit_notes' note.id %}">{{ note.title }}</a>
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{ note.description }}</p>
+        <footer class="blockquote-footer">{{ note.writer }}</footer>
+      </blockquote>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

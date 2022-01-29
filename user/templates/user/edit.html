@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="card">
+    {% for note in note_detail %}
+    <div class="card-header">
+        <a href="{% url 'users:edit_notes' note.id %}">{{ note.title }}</a>
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{ note.description }}</p>
+        <footer class="blockquote-footer">{{ note.writer }}</footer>
+      </blockquote>
+    </div>
+    <form method="POST">
+        <button type="submit" class="btn btn-danger" name="note_delete">delete</button>
+    </from>
+    {% endfor %}
+</div>
+
+
+
+
+<div class = "container">
+    <form method="POST">
+      {% csrf_token %}
+      <h4>title</h4>
+      <div class = "form-group">
+        <input type = "text" class = "form-control" 
+            id = "exampleFormControlInput1" name="new_title" placeholder = "title">
+      </div>
+
+      <h4>your subscribers</h4>
+      <div class = "form-group">
+        <select multiple class = "form-control" id = "exampleFormControlSelect2" name='subscribers'>
+          {% for subscriber in subscribers %}
+          <option>{{ subscriber }}</option>
+          {% endfor %}
+        </select>
+      </div>
+       
+      <h4>note</h4>
+      <div class = "form-group">
+        <textarea class = "form-control" id = "exampleFormControlTextarea1" name="new_description" rows = "3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Success</button>
+    </form>
+</div>
+
+{% endblock content %}

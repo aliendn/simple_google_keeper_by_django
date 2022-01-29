@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <div class = "container">
+    <form action="{% url 'users:note_creating' %}" method="post">
+      {% csrf_token %}
+      <h4>title</h4>
+      <div class = "form-group">
+        <input type = "text" class = "form-control" 
+            id = "exampleFormControlInput1" name="title" placeholder = "title">
+      </div>
+
+      <h4>your subscribers</h4>
+      <div class = "form-group">
+        <select multiple class="custom-select" id = "exampleFormControlSelect2" name='subscribers' type= "text">
+          {% for subscriber in subscribers %}
+          <option>{{ subscriber }}</option>
+          {% endfor %}
+        </select>
+
+       
+      <h4>note</h4>
+      <div class = "form-group">
+        <textarea class = "form-control" id = "exampleFormControlTextarea1" name="description" rows = "3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Success</button>
+    </form>
+ </div>
+
+{% endblock content %}
